@@ -37,12 +37,12 @@ Megaman.Boss.prototype = Object.create(Phaser.Sprite.prototype);
 Megaman.Boss.prototype.constructor = Megaman.Boss;
 
 Megaman.Boss.prototype.create = function(x){
-	console.log("je suis vivant !")
+	//console.log("je suis vivant !")
 	//autorise la physique
 	this.enableBody = true;
 	this.reset(3504,1248);
 	this.animations.play('move', 10, true);
-	console.dir(this);
+	//console.dir(this);
 
 	//ajout groupe de bullet Boss
 	this.bullets = this.game.add.group();
@@ -62,7 +62,7 @@ Megaman.Boss.prototype.create = function(x){
 }
 
 Megaman.Boss.prototype.hit = function (player, bullet) {   
-	console.log("je suis touché ! " + bullet.body.damage + " dégats");
+	//console.log("je suis touché ! " + bullet.body.damage + " dégats");
 	bullet.kill();
 	this.pv -= bullet.body.damage;
 	if (this.pv <= 0) {
@@ -105,11 +105,11 @@ Megaman.Boss.prototype.move = function(){
 	var _self = this;
 	_self.isMoving = true;
 
-	var movement = -100;
+	var movement = -50;
 	
-	console.log(_self.toRight);
+	//console.log(_self.toRight);
 	if (_self.toRight) {
-		movement = 100;
+		movement = -movement;
 		this.scale.x = -1;
 	}
 
@@ -117,7 +117,7 @@ Megaman.Boss.prototype.move = function(){
 	this.animations.play('move', 10, true);
 	var mover = this.game.add.tween(this).to( { 
 			x : this.position.x + movement
-		} , 1000, Phaser.Easing.Linear.None, true);
+		} , 500, Phaser.Easing.Linear.None, true);
 	mover.onComplete.add(function(){
 			_self.loadTexture("boss");
 			_self.animations.play('move');
