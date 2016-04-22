@@ -39,7 +39,7 @@ Megaman.Game.prototype = {
 
 		this.game.player = new Megaman.Player(this.game, "Batman");
 
-		// this.game.camera.follow(this.game.player);
+		this.game.camera.follow(this.game.player);
 
 
 		this.game.boss = new Megaman.Boss(this.game, "Boss");
