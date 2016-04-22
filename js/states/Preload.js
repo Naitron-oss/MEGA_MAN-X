@@ -21,7 +21,15 @@ Megaman.Preload.prototype = {
 		//this.game.load.image("nom","url");
 		//this.game.load.image("play","url");
 
-		this.game.load.image("enemy","ball.png");
+		this.game.load.tilemap('plateforme', 'assets/tilemaps/plateforme.json', null, Phaser.Tilemap.TILED_JSON);
+
+		this.game.load.image('ground', 'assets/map_80x80.png');
+
+		this.game.load.image("enemy1","ball.png");
+		this.game.load.image("enemy2","ball.png");
+		this.game.load.image("enemy3","ball.png");
+
+
 
 		//load ennemy
 	},
