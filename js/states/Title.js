@@ -21,12 +21,12 @@ Megaman.Title.prototype = {
 			playButton.scale.x = .3;
 			playButton.scale.y = .3;
 
-		var creditButton = this.game.add.button(halfPositionX, halfPositionY + 65, "credit", this.playTheGame, this);
+		var creditButton = this.game.add.button(halfPositionX, halfPositionY + 65, "credit", this.playCredit, this);
 			creditButton.anchor.setTo(0.5,0.5);
 			creditButton.scale.x = .3;
 			creditButton.scale.y = .3;
 
-		var controlsButton = this.game.add.button(halfPositionX, halfPositionY + 80, "controls", this.playTheGame, this);
+		var controlsButton = this.game.add.button(halfPositionX, halfPositionY + 80, "controls", this.playControls, this);
 			controlsButton.anchor.setTo(0.5,0.5);
 			controlsButton.scale.x = .3;
 			controlsButton.scale.y = .3;
@@ -35,5 +35,13 @@ Megaman.Title.prototype = {
   	playTheGame: function(){
   		// go to title
 		this.game.state.start("Game");
+	},
+
+	playCredit: function(){
+		this.game.state.start("Credit");
+	},
+
+	playControls : function(){
+		this.game.state.start("Controls");
 	}
 }
