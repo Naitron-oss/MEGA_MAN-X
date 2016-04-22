@@ -5,11 +5,13 @@ Megaman.Game.prototype = {
 		console.log("Game Screen")
 
 		//crée un joueur
-		this.game.player = new Megaman.Player(this.game, "Batman");
+		//this.game.player = new Megaman.Player(this.game, "Batman");
+		this.game.enemy = new Megaman.Enemy(this.game, "Mario");
+		console.log(this.game.enemy);
 
 		// bouton a retirer juste pour passer a l'ecran suivant
-		var gameOverButton = this.game.add.button(600, 320, "play", this.stopTheGame, this);
-		gameOverButton.anchor.setTo(0.5,0.5);
+		//var gameOverButton = this.game.add.button(600, 320, "play", this.stopTheGame, this);
+		//gameOverButton.anchor.setTo(0.5,0.5);
 		
 	},
 	stopTheGame : function(){
@@ -19,6 +21,8 @@ Megaman.Game.prototype = {
 		this.game.state.start("GameOver");
 	},
 	update : function(){
+		//PATTERN DEPLACEMENT
+
 		//mise à jour globale du jeu
 		// [ TODO a changer ]
 		if(this.game.keys.left.isDown) {
@@ -30,6 +34,9 @@ Megaman.Game.prototype = {
 		}else if(this.game.keys.down.isDown) {
 			this.game.player.body.velocity.y = 50;
 		}
+
+		this.game.enemy.body.velocity.x = 50;
+
 	}
 }
 
