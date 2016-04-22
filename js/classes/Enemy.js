@@ -3,6 +3,21 @@ Megaman.Enemy = function (game, name, type, x, y) {
 	// on appelle Phaser.Sprite en donnant le "game" en reference
     Phaser.Sprite.call(this, game);
     game.add.existing(this);
+
+
+    
+    this.loadTexture('enemy1');
+    //animations
+    //pour sa charger la texture this.loadTexture('enemy1');
+    this.animationEnemyFly = this.animations.add('fly', [3,4,5], 5, true);
+
+    //pour sa charger la texture this.loadTexture('enemy2');
+    this.animationEnemyMoveShot = this.animations.add('EnemyMoveShot', [1], 5, true);
+    this.animationEnemyMove = this.animations.add('EnemyMove', [0], 5, true);
+
+    this.animationEnemyFixedShot = this.animations.add('EnemyFixedShot', [3], 5, true);
+    this.animationEnemyFixed = this.animations.add('EnemyFixed', [2], true);
+    
     //this est notre sprite phaser maintenant
     this.anchor.setTo(0.5, 0.5);
 
