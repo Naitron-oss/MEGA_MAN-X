@@ -21,7 +21,6 @@ Megaman.Game.prototype = {
 		this.layerBg = this.mapLevel1.createLayer("bg");
 		this.layerDecor = this.mapLevel1.createLayer("decor");
 		this.layerWalls = this.mapLevel1.createLayer("walls");
-		this.layerWalls.physicsBodyType = Phaser.Physics.ARCADE;
 		this.layerLadder = this.mapLevel1.createLayer("ladder");
 		this.layerSpike = this.mapLevel1.createLayer("spike");
 		this.layerBg.resizeWorld();

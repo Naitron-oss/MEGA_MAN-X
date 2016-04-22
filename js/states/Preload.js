@@ -33,6 +33,7 @@ Megaman.Preload.prototype = {
 		// Load TILEMAP
 		//game.load.tilemap('level3', 'assets/tilemaps/maps/cybernoid.json', null, Phaser.Tilemap.TILED_JSON);
 		this.game.load.tilemap('level1', 'assets/tilemaps/level1.json', null, Phaser.Tilemap.TILED_JSON);
+		// this.game.load.tilemap('platforme', 'assets/tilemaps/plateforme.json', null, Phaser.Tilemap.TILED_JSON);
 		//Load Tiles
 		this.game.load.image('tiles', 'assets/tiles/tileLevel.png', 16, 16);
 
