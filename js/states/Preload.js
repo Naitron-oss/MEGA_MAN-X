@@ -16,9 +16,9 @@ Megaman.Preload.prototype = {
 	    */
 
 	    /* IMAGE POUR MEGAMAN */
-	    this.game.load.image('megaman', 'assets/images/dead.png');
 	    //spritesheet (key, url, frameWidth, frameHeight, frameMax, margin, spacing
 		this.game.load.spritesheet("nom","url_60x80.png", 60, 80, 10);
+		this.game.load.spritesheet('megaman',"assets/tiles/tileMegaman.png",32,32,11);
 		// image (key, url)
 		this.game.load.image("nom","url");
 		this.game.load.image("play","url");

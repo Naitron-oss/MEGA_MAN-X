@@ -5,6 +5,12 @@ Megaman.Player = function (game, name) {
 
     this.loadTexture('megaman');
 
+    //animations
+   	this.animationRun = this.animations.add('run', [0,1,2,3], 5, true);
+   	this.animationJump = this.animations.add('jump', [8,4], 5, true);
+   	this.animationLadder = this.animations.add('ladder',[5,6],5,true);
+   	this.animationShoot = this.animations.add('shoot',[8,9],5,true);
+   	this.play('jump');
     //this est notre sprite phaser maintenant
     this.anchor.setTo(0.5, 0.5);
 
