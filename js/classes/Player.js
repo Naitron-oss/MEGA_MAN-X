@@ -48,9 +48,9 @@ Megaman.Player.prototype.jump = function(argument){
     }
 };
 
-Megaman.Player.prototype.hit = function (damage) {   
-	console.log("je suis touché !")
-	this.body.health -= damage;
+Megaman.Player.prototype.hit = function (bullet) {   
+	console.log("je suis touché ! " + bullet.damage + " dégats");
+	this.body.health -= bullet.damage;
 	if (this.body.health < 0) {
 		this.explode();
 	}

@@ -23,6 +23,8 @@ Megaman.Game.prototype = {
 	update : function(){
 		/* DEBUG PLAYER */
 		this.game.debug.body(this.game.player);
+		this.game.debug.body(this.game.boss);
+		this.game.debug.body(this.game.boss.bullet);
 
 		//mise à jour globale du jeu
 		this.game.player.body.velocity.x = 0;
@@ -34,6 +36,10 @@ Megaman.Game.prototype = {
 		} if(this.game.keys.up.isDown || this.game.wasd.up.isDown) {
 			this.game.player.jump();
 		}
+
+		/* Collisions  */
+		this.game.physics.arcade.collide(this.game.boss.bullet, this.game.player, this.game.player.hit);
+
 
 		/*if (this.game.keys.left.isUp || this.game.keys.right.isDown) {
 			this.game.player.body.velocity.x = 0;
