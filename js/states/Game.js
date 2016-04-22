@@ -1,8 +1,16 @@
 Megaman.Game = function(){}
 
+
+var enemyArray = [];
+var typeArray = [1,2,3];
+
 Megaman.Game.prototype = {
 	create: function(){ 
 		console.log("Game Screen")
+
+
+
+		this.game.physics.startSystem(Phaser.Physics.ARCADE);
 
 		/*DAMIEN CODE*/
 		this.mapLevel1 = this.game.add.tilemap('level1');
@@ -23,6 +31,7 @@ Megaman.Game.prototype = {
 		/*DAMIEN CODE END*/
 
 		//crée un joueur
+
 		this.game.player = new Megaman.Player(this.game, "Batman");
 
 		// this.game.camera.follow(this.game.player);
@@ -41,11 +50,30 @@ Megaman.Game.prototype = {
 		this.game.player.bullets.setAll('checkWorldBounds', true);
 
 
+		//this.game.player = new Megaman.Player(this.game, "Batman");
+		//this.game,"nom",type,posx,posy
+		for (var i = 0; i < 10; i++) {
+			var t = typeArray[Math.floor(Math.random()*typeArray.length)];
+			enemyArray.push(new Megaman.Enemy(this.game, "Mario", t, 10*i, 20*i));
+		}
+
+
+
 		// bouton a retirer juste pour passer a l'ecran suivant
-		var gameOverButton = this.game.add.button(600, 320, "play", this.stopTheGame, this);
-		gameOverButton.anchor.setTo(0.5,0.5);
+		//var gameOverButton = this.game.add.button(600, 320, "play", this.stopTheGame, this);
+		//gameOverButton.anchor.setTo(0.5,0.5);
+
+
+		this.map = this.game.add.tilemap('plateforme');
+		this.map.addTilesetImage('ground');
+		this.map.setCollisionBetween(1, 1);
 		
-		
+		this.layer = this.map.createLayer("Calque de Tile 1");
+		this.layer.debug = true;
+
+		this.map.setCollisionBetween(1, 1);
+
+
 	},
 	stopTheGame : function(){
 		// tue le joueur
@@ -54,9 +82,16 @@ Megaman.Game.prototype = {
 		this.game.state.start("GameOver");
 	},
 	update : function(){
+
+
 		/* DEBUG PLAYER */
 		this.game.debug.body(this.game.player);
 		this.game.debug.body(this.game.boss);
+
+
+
+		//console.log("bouge")
+		//PATTERN DEPLACEMENT
 
 		//mise à jour globale du jeu
 		this.game.player.body.velocity.x = 0;
@@ -93,6 +128,22 @@ Megaman.Game.prototype = {
 
 		if (this.game.shootButtons.e.isDown || this.game.shootButtons.shift.isDown ) {
 			this.game.player.shoot();
+		}
+
+		/* Gestion des ennemies */
+		for (var i = 0; i < enemyArray.length; i++) {
+			this.game.physics.arcade.collide(enemyArray[i], this.layer);
+			switch(enemyArray[i].type){
+		    	case 1:
+		    		enemyArray[i].move();
+		    	break;
+		    	case 2:
+		    		enemyArray[i].shoot();
+		    	break;
+		    	case 3:
+		    		enemyArray[i].fly();
+		    	break;
+		    }
 		}
 
 	}
