@@ -1,6 +1,6 @@
 Megaman.Title = function(){}
 
-Megaman.Preload.prototype = {
+Megaman.Title.prototype = {
 	create: function(){ 
 		
 		console.log("Title create")
