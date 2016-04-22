@@ -41,26 +41,39 @@ Megaman.Boss.prototype.create = function(x){
 	this.reset(750,600-16);
 	this.animations.play('move', 10, true);
 	console.dir(this);
-	this.shoot();
+
+	//ajout groupe de bullet Boss
+	this.bullets = this.game.add.group();
+	this.bullets.enableBody = true;
+	this.bullets.physicsBodyType = Phaser.Physics.ARCADE;
+	this.bullets.createMultiple(75, 'bossBullets');
+	this.bullets.setAll('anchor.x', 0.5);
+	this.bullets.setAll('anchor.y', 0.5);
+	this.bullets.setAll('body.allowGravity', false);
+	this.bullets.setAll('checkWorldBounds', true);
+	this.bullets.setAll('outOfBoundsKill', true);
+
+	this.shoot(2000)
 
 }
 
 Megaman.Boss.prototype.shoot = function(x) {
 	this.loadTexture("bossShoot");
 	this.animations.play('move', 10, true);
-	this.createBullet();
+	this.game.time.events.loop(Phaser.Timer.SECOND*2, this.createBullet, this);
+
+
 }
 
 Megaman.Boss.prototype.createBullet = function(){
-	// this.bullet.loadTexture("bossShoot");
-	this.bullet = this.game.add.sprite(this.x -16,this.y, "bossBullets");
-	this.bullet.damage = 25;
-	this.bullet.animations.add('shoot');
-	this.bullet.animations.play('shoot',10,true);
-	this.bullet.anchor.set(0.5,0.5);
-	this.game.physics.enable(this.bullet, Phaser.Physics.ARCADE);
-	this.bullet.enableBody = true;	
-	this.bullet.body.collideWorldBounds = true;
-	this.bullet.body.velocity.x = -150;
-
+	
+	var bullet = this.bullets.getFirstExists(false);
+	if (bullet) {
+		bullet.reset(this.x - 16, this.y);
+		bullet.animations.add('shoot');
+		bullet.animations.play('shoot',10,true);
+		bullet.body.velocity.x = -400;
+		
+	}
+	
 }
