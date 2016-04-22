@@ -36,6 +36,7 @@ Megaman.Credit.prototype = {
 
 
 	    this.nextLine();
+	    this.game.input.onTap.addOnce(this.replay,this);
 
 	},
 
