@@ -4,8 +4,28 @@ Megaman.Game.prototype = {
 	create: function(){ 
 		console.log("Game Screen")
 
+		/*DAMIEN CODE*/
+		this.mapLevel1 = this.game.add.tilemap('level1');
+		this.mapLevel1.addTilesetImage('level1','tiles');
+
+		console.log( this.mapLevel1 )
+		
+		this.layerBg = this.mapLevel1.createLayer("bg");
+		this.layerDecor = this.mapLevel1.createLayer("decor");
+		this.layerWalls = this.mapLevel1.createLayer("walls");
+		this.layerLadder = this.mapLevel1.createLayer("ladder");
+		this.layerSpike = this.mapLevel1.createLayer("spike");
+		this.layerBg.resizeWorld();
+
+
+
+		/*DAMIEN CODE END*/
+
 		//crée un joueur
 		this.game.player = new Megaman.Player(this.game, "Batman");
+
+		this.game.camera.follow(this.game.player);
+
 
 		this.game.boss = new Megaman.Boss(this.game, "Boss");
 

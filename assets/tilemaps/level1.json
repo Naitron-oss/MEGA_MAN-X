@@ -373,7 +373,7 @@
         {
          "columns":12,
          "firstgid":1,
-         "image":"..\/tiles\/tileLevel.png",
+         "image":"assets/tiles/tileLevel.png",
          "imageheight":64,
          "imagewidth":192,
          "margin":0,
