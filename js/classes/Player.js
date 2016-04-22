@@ -57,7 +57,7 @@ Megaman.Player.prototype.jump = function(argument){
     }
 };
 
-Megaman.Player.prototype.hit = function (bullet) {   
+Megaman.Player.prototype.hit = function (player, bullet) {  
 	console.log("je suis touché ! " + bullet.damage + " dégats");
 	bullet.kill();
 	this.body.health -= bullet.damage;
@@ -75,6 +75,7 @@ Megaman.Player.prototype.explode = function () {
 Megaman.Player.prototype.shoot = function () {
 	if (this.game.time.now > this.bulletTime) {
 		var bullet = this.game.player.bullets.getFirstExists(false);
+		bullet.damage = 10;
 		if (bullet) {
 			bullet.reset(this.x + 10, this.y);
 			bullet.body.velocity.x = 400;
