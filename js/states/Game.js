@@ -8,8 +8,6 @@ Megaman.Game.prototype = {
 		this.game.player = new Megaman.Player(this.game, "Batman");
 
 		this.game.boss = new Megaman.Boss(this.game, "Boss");
-		//this.game.add.existing(this.game.player);
-		this.game.physics.arcade.gravity.y = 250;
 
 		//ajout d'un groupe de bullets pour MEGAMAN
 		this.game.player.bullets = this.game.add.group();
@@ -50,7 +48,7 @@ Megaman.Game.prototype = {
 		}
 		if (this.game.jumpButtons.a.isDown || this.game.jumpButtons.space.isDown) {
 			this.game.player.jump();
-		} 
+		}
 
 		if(this.game.keys.up.isDown || this.game.wasd.up.isDown) {
 			//POUR LES ECHELLES			
@@ -58,7 +56,7 @@ Megaman.Game.prototype = {
 
 
 		/* Collisions  */
-		this.game.physics.arcade.collide(this.game.boss.bullets, this.game.player, this.game.player.hit);
+		this.game.physics.arcade.collide(this.game.boss.bullets, this.game.player, this.game.player.hit, null, this.game.player);
 
 
 		/*if (this.game.keys.left.isUp || this.game.keys.right.isDown) {
