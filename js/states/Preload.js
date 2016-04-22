@@ -1,6 +1,6 @@
-MyGame.Preload = function(){}
+Megaman.Preload = function(){}
 
-MyGame.Preload.prototype = {
+Megaman.Preload.prototype = {
 	preload: function(){ 
 
 		console.log("Preload preload")

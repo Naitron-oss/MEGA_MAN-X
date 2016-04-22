@@ -1,9 +1,9 @@
 // on initialise le jeu ceci peut rester vide
-MyGame.Splash = function(){
+Megaman.Splash = function(){
 	console.log("Starting My Game");
 }
   
-MyGame.Splash.prototype = {
+Megaman.Splash.prototype = {
 	// logo du splash screen
 	preload: function(){
 		console.log("Preload Splash")

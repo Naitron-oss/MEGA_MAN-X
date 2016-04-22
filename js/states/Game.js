@@ -1,11 +1,11 @@
-MyGame.Game = function(){}
+Megaman.Game = function(){}
 
-MyGame.Game.prototype = {
+Megaman.Game.prototype = {
 	create: function(){ 
 		console.log("Game Screen")
 
 		//crée un joueur
-		this.game.player = new MyGame.Player(this.game, "Batman");
+		this.game.player = new Megaman.Player(this.game, "Batman");
 
 		// bouton a retirer juste pour passer a l'ecran suivant
 		var gameOverButton = this.game.add.button(600, 320, "play", this.stopTheGame, this);

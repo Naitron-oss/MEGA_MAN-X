@@ -1,4 +1,4 @@
-MyGame.Player = function (game, name) {
+Megaman.Player = function (game, name) {
 
 	// on appelle Phaser.Sprite en donnant le "game" en reference
    
@@ -22,22 +22,22 @@ MyGame.Player = function (game, name) {
 }
 
 // défini le ptototype de notre objet
-MyGame.Player.prototype = Object.create(Phaser.Sprite.prototype);
+Megaman.Player.prototype = Object.create(Phaser.Sprite.prototype);
 // rappelle a l'objet que
-MyGame.Player.prototype.constructor = MyGame.Player;
+Megaman.Player.prototype.constructor = Megaman.Player;
 
-MyGame.Player.prototype.create = function (x) {
+Megaman.Player.prototype.create = function (x) {
 	console.log("je suis vivant !")
 	//autorise la physique
 	this.enableBody = true;
 	this.alive = true;
 }
 
-MyGame.Player.prototype.hit = function (bomb, block) {   
+Megaman.Player.prototype.hit = function () {   
 	console.log("je suis touché !")
 }
 
-MyGame.Player.prototype.explode = function () {
+Megaman.Player.prototype.explode = function () {
 
 	console.log("je suis mort !");
 	this.alive = false;

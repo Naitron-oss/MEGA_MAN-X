@@ -1,6 +1,6 @@
-MyGame.GameOver = function(game){}
+Megaman.GameOver = function(game){}
 
-MyGame.GameOver.prototype = {
+Megaman.GameOver.prototype = {
 	create: function(){ 
 		
 		console.log("Game Over")
