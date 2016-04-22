@@ -10,16 +10,25 @@ Megaman.Player = function (game, name) {
 
     this.name = name;
     this.jumpTimer = 0;
+    this.bulletTime = 0;
 
 	// ajout du clavier
-	console.log(this.game)
 	this.game.keys = this.game.input.keyboard.createCursorKeys();
 	this.game.wasd = { 	up: this.game.input.keyboard.addKey(Phaser.Keyboard.Z), 
-						//down: this.game.input.keyboard.addKey(Phaser.Keyboard.S), 
 						left: this.game.input.keyboard.addKey(Phaser.Keyboard.Q), 
 						right: this.game.input.keyboard.addKey(Phaser.Keyboard.D)}
 
+	this.game.jumpButtons = { a : this.game.input.keyboard.addKey(Phaser.Keyboard.A),
+							  space : this.game.input.keyboard.addKey(Phaser.Keyboard.SPACEBAR)
+	}
+
+	this.game.shootButtons = { e : this.game.input.keyboard.addKey(Phaser.Keyboard.E),
+							shift : this.game.input.keyboard.addKey(Phaser.Keyboard.SHIFT)}
+
 	this.game.physics.enable(this, Phaser.Physics.ARCADE);
+
+	//AJOUT DE LA GRAVITE
+	this.body.gravity.y = 250;
 	this.body.collideWorldBounds = true;
     this.create();
 
@@ -60,6 +69,18 @@ Megaman.Player.prototype.explode = function () {
 	console.log("je suis mort !");
 	this.alive = false;
 	this.kill();
+}
+
+Megaman.Player.prototype.shoot = function () {
+	if (this.game.time.now > this.bulletTime) {
+		var bullet = this.game.player.bullets.getFirstExists(false);
+		if (bullet) {
+			bullet.reset(this.x + 10, this.y);
+			bullet.body.velocity.x = 400;
+			bullet.body.velocity.y = 0;
+			this.bulletTime = this.game.time.now + 400;
+		}
+	}
 }
 
 
