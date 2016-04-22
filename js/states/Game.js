@@ -59,7 +59,7 @@ Megaman.Game.prototype = {
 
 
 		/* Collisions  */
-		this.game.physics.arcade.collide(this.game.boss.bullet, this.game.player, this.game.player.hit);
+		this.game.physics.arcade.collide(this.game.boss.bullet, this.game.player, this.game.player.hit, null, this.game.player);
 
 
 		/*if (this.game.keys.left.isUp || this.game.keys.right.isDown) {
