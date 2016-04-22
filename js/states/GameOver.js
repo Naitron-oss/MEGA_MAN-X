@@ -13,7 +13,7 @@ Megaman.GameOver.prototype = {
 		
 	},
 	replay : function(){
-		this.game.state.start("Game");
+		this.game.state.start("Title");
 	}
 }
 
