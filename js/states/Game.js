@@ -52,8 +52,14 @@ Megaman.Game.prototype = {
 		}
 
 		// bouton a retirer juste pour passer a l'ecran suivant
+
 		//var gameOverButton = this.game.add.button(600, 320, "play", this.stopTheGame, this);
 		//gameOverButton.anchor.setTo(0.5,0.5);
+
+		var gameOverButton = this.game.add.button(160, 120, "play", this.stopTheGame, this);
+		gameOverButton.anchor.setTo(0.5,0.5);
+		
+
 		
 		//this.map.setCollisionBetween(1, 1);
 
