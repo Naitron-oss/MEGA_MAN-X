@@ -38,7 +38,7 @@ Megaman.Boss.prototype.create = function(x){
 	console.log("je suis vivant !")
 	//autorise la physique
 	this.enableBody = true;
-	this.reset(750,600-16);
+	this.reset(3504,1248);
 	this.animations.play('move', 10, true);
 	console.dir(this);
 

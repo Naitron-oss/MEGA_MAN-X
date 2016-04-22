@@ -13,6 +13,7 @@ Megaman.Game.prototype = {
 		this.layerBg = this.mapLevel1.createLayer("bg");
 		this.layerDecor = this.mapLevel1.createLayer("decor");
 		this.layerWalls = this.mapLevel1.createLayer("walls");
+		this.layerWalls.physicsBodyType = Phaser.Physics.ARCADE;
 		this.layerLadder = this.mapLevel1.createLayer("ladder");
 		this.layerSpike = this.mapLevel1.createLayer("spike");
 		this.layerBg.resizeWorld();
@@ -24,11 +25,11 @@ Megaman.Game.prototype = {
 		//crée un joueur
 		this.game.player = new Megaman.Player(this.game, "Batman");
 
-		this.game.camera.follow(this.game.player);
+		// this.game.camera.follow(this.game.player);
 
 
 		this.game.boss = new Megaman.Boss(this.game, "Boss");
-
+		this.game.camera.follow(this.game.boss);
 		//ajout d'un groupe de bullets pour MEGAMAN
 		this.game.player.bullets = this.game.add.group();
 		this.game.player.bullets.enableBody = true;
@@ -78,6 +79,12 @@ Megaman.Game.prototype = {
 		/* Collisions  */
 		this.game.physics.arcade.collide(this.game.boss.bullets, this.game.player, this.game.player.hit, null, this.game.player);
 		this.game.physics.arcade.collide(this.game.player.bullets, this.game.boss, this.game.boss.hit, null, this.game.boss);
+		this.game.physics.arcade.collide(this.game.boss.bullets, this.layerWalls, function(wall, bullet) {
+			console.log('test');
+			bullet.kill();
+		}, null, this.game.layerWalls);
+
+
 
 
 		/*if (this.game.keys.left.isUp || this.game.keys.right.isDown) {
@@ -89,5 +96,11 @@ Megaman.Game.prototype = {
 		}
 
 	}
+
 }
+
+
+	function checkCollision(){
+		console.log('mur');
+	}
 
