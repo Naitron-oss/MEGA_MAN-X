@@ -20,6 +20,7 @@ Megaman.Preload.prototype = {
 		// image (key, url)
 		this.game.load.image("nom","url");
 		this.game.load.image("play","url");
+		this.game.load.image("mainScreen","assets/ui/title.jpg");
 	},
   	create: function(){
   		console.log("Preload finished")

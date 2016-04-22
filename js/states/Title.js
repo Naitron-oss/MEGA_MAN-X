@@ -5,6 +5,8 @@ Megaman.Preload.prototype = {
 		
 		console.log("Title create")
 
+		Megaman.add.images(game.world.centerX, game.world.centerY, 'mainScreen').anchor.set(0.5);
+
 		var playButton = this.game.add.button(200, 320, "play", this.playTheGame, this);
 			playButton.anchor.setTo(0.5,0.5);
 		
