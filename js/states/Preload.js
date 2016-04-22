@@ -16,11 +16,15 @@ Megaman.Preload.prototype = {
 	    */
 
 	    //spritesheet (key, url, frameWidth, frameHeight, frameMax, margin, spacing
-		this.game.load.spritesheet("nom","url_60x80.png", 60, 80, 10);
-		// image (key, url)
-		this.game.load.image("nom","url");
-		this.game.load.image("play","url");
+		// this.game.load.spritesheet("nom","url_60x80.png", 60, 80, 10);
+		// // image (key, url)
+		// this.game.load.image("nom","url");
+		this.game.load.image("play","assets/ui/play.png");
+		this.game.load.image("credit","assets/ui/credit.png");
 		this.game.load.image("mainScreen","assets/ui/title.jpg");
+		this.game.load.image("logo","assets/ui/logo.png");
+
+
 	},
   	create: function(){
   		console.log("Preload finished")
