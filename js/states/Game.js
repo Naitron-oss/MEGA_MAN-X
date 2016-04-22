@@ -113,17 +113,6 @@ Megaman.Game.prototype = {
 		this.game.physics.arcade.collide(this.game.boss.bullets, this.game.player, this.game.player.hit, null, this.game.player);
 		this.game.physics.arcade.collide(this.game.player.bullets, this.game.boss, this.game.boss.hit, null, this.game.boss);
 
-<<<<<<< HEAD
-=======
-
-		/*if (this.game.keys.left.isUp || this.game.keys.right.isDown) {
-			this.game.player.body.velocity.x = 0;
-		}*/
-
-		if (this.game.shootButtons.e.isDown || this.game.shootButtons.shift.isDown ) {
-			this.game.player.shoot();
-		}
-
 		/* Gestion des ennemies */
 		for (var i = 0; i < enemyArray.length; i++) {
 			this.game.physics.arcade.collide(enemyArray[i], this.layer);
@@ -140,7 +129,6 @@ Megaman.Game.prototype = {
 		    }
 		}
 
->>>>>>> 6deaa5849c4698d9ad99b26b205f8ee873fd99d8
 	}
 }
 
