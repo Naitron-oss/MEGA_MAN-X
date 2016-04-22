@@ -8,15 +8,23 @@ Megaman.Title.prototype = {
 		
 		console.log("Title create")
 
-		this.game.add.sprite(0,0,"mainScreen");
-		this.game.add.sprite(halfPositionX, halfPositionY - 150,"logo").anchor.set(0.5);;
+		var mainScreen = this.game.add.sprite(0,0,"mainScreen");
+			mainScreen.scale.x = .4;
+			mainScreen.scale.y = .4;
+		var logo = this.game.add.sprite(halfPositionX, halfPositionY - 65,"logo");
+			logo.scale.x = .4;
+			logo.scale.y = .4;
+			logo.anchor.set(0.5);
 
-
-		var playButton = this.game.add.button(halfPositionX, halfPositionY + 150, "play", this.playTheGame, this);
+		var playButton = this.game.add.button(halfPositionX, halfPositionY + 50, "play", this.playTheGame, this);
 			playButton.anchor.setTo(0.5,0.5);
+			playButton.scale.x = .4;
+			playButton.scale.y = .4;
 
-		var creditButton = this.game.add.button(halfPositionX, halfPositionY + 180, "credit", this.playTheGame, this);
+		var creditButton = this.game.add.button(halfPositionX, halfPositionY + 65, "credit", this.playTheGame, this);
 			creditButton.anchor.setTo(0.5,0.5);
+			creditButton.scale.x = .4;
+			creditButton.scale.y = .4;
 		
 	},
   	playTheGame: function(){

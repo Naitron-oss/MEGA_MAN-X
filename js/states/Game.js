@@ -8,7 +8,7 @@ Megaman.Game.prototype = {
 		this.game.player = new Megaman.Player(this.game, "Batman");
 
 		// bouton a retirer juste pour passer a l'ecran suivant
-		var gameOverButton = this.game.add.button(600, 320, "play", this.stopTheGame, this);
+		var gameOverButton = this.game.add.button(160, 120, "play", this.stopTheGame, this);
 		gameOverButton.anchor.setTo(0.5,0.5);
 		
 	},
