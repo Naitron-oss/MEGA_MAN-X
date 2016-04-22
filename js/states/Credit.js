@@ -4,14 +4,19 @@ Megaman.Credit = function(game){}
 		    "Credit",
 		    "GUI DESIGNER AND DEVELOPER",
 		    "Jeremy Delporte - Michael Fossoul",
+		    "",
 		    "MEGAMAN BEHAVIOR",
 		    "Bastien Leroy - Fidel Jongo",
+		    "",
 		    "ENEMIES BEHAVIOR",
 		    "Mohammed Berber - Sebastien Tonneau",
+		    "",
 		    "BOSS BEHAVIOR",
 		    "Anthony Tomson - Emeric Beauchot",
+		    "",
 		    "LEVEL DESIGN",
 		    "Damien Gauthier - Fabien Nolf",
+		    "",
 		    "TEAM SUPPORT",
 		    "Teddy Kishi",
 
@@ -33,6 +38,7 @@ Megaman.Credit.prototype = {
 	    text = this.game.add.text(this.game.world.centerX, 5, '', { font: "10px Arial", fill: "#fff"});
 	    text.anchor.setTo(0.5,0);
 	    text.align = "center";
+	    text.lineSpacing = -5;
 
 
 	    this.nextLine();
