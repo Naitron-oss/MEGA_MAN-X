@@ -6,7 +6,7 @@ Megaman.Enemy = function (game, name, type, x, y) {
 
 
     
-
+    this.loadTexture('enemy1');
     //animations
     //pour sa charger la texture this.loadTexture('enemy1');
     this.animationEnemyFly = this.animations.add('fly', [3,4,5], 5, true);
