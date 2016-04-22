@@ -16,14 +16,22 @@ Megaman.Game.prototype = {
 		this.mapLevel1 = this.game.add.tilemap('level1');
 		this.mapLevel1.addTilesetImage('level1','tiles');
 
+
 		console.log( this.mapLevel1 )
 		
 		this.layerBg = this.mapLevel1.createLayer("bg");
 		this.layerDecor = this.mapLevel1.createLayer("decor");
 		this.layerWalls = this.mapLevel1.createLayer("walls");
+		this.game.physics.enable(this.layerWalls, Phaser.Physics.ARCADE);
+
+		// this.layerWalls.debug = true;
+		this.layerWalls.enableBody = true;
+
 		this.layerLadder = this.mapLevel1.createLayer("ladder");
 		this.layerSpike = this.mapLevel1.createLayer("spike");
 		this.layerBg.resizeWorld();
+
+		this.mapLevel1.setCollisionBetween(0,11,true,this.layerWalls)
 
 		/*DAMIEN CODE END*/
 
@@ -35,6 +43,9 @@ Megaman.Game.prototype = {
 
 
 		this.game.boss = new Megaman.Boss(this.game, "Boss");
+
+		//this.game.camera.follow(this.game.boss);
+		
 
 		//ajout d'un groupe de bullets pour MEGAMAN
 		this.game.player.bullets = this.game.add.group();
@@ -58,7 +69,7 @@ Megaman.Game.prototype = {
 
 		var gameOverButton = this.game.add.button(160, 120, "play", this.stopTheGame, this);
 		gameOverButton.anchor.setTo(0.5,0.5);
-		
+
 
 		
 		//this.map.setCollisionBetween(1, 1);
@@ -118,6 +129,14 @@ Megaman.Game.prototype = {
 
 		this.game.physics.arcade.collide(this.game.boss.bullets, this.game.player, this.game.player.hit, null, this.game.player);
 		this.game.physics.arcade.collide(this.game.player.bullets, this.game.boss, this.game.boss.hit, null, this.game.boss);
+		// console.log(this.layerWalls);
+
+		var killBossBullet = function(bullet){
+			bullet.kill();
+		}
+
+		this.game.physics.arcade.collide(this.game.boss.bullets, this.layerWalls, killBossBullet, null, this.game);
+
 
 		/* Gestion des ennemies */
 		for (var i = 0; i < enemyArray.length; i++) {
@@ -136,5 +155,5 @@ Megaman.Game.prototype = {
 		}
 
 	}
-}
 
+}

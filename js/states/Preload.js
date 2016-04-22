@@ -46,13 +46,15 @@ Megaman.Preload.prototype = {
 		this.game.load.spritesheet("bossShoot","assets/tiles/bossShoot.png", 32, 32, 2);
 		this.game.load.spritesheet("bossBullets","assets/tiles/bossBullets.png", 16, 32, 3);
 		this.game.load.spritesheet('megaman',"assets/tiles/tileMegaman.png",32,32,11);
-
+		this.game.load.spritesheet('enemy1',"assets/tiles/tileEnemy.png",32,32,6);
+		this.game.load.spritesheet('enemy2',"assets/tiles/tileMegamanEnemy.png",32,32,4);
 
 		/*DAMIEN CODE*/
 
 		// Load TILEMAP
 		//game.load.tilemap('level3', 'assets/tilemaps/maps/cybernoid.json', null, Phaser.Tilemap.TILED_JSON);
 		this.game.load.tilemap('level1', 'assets/tilemaps/level1.json', null, Phaser.Tilemap.TILED_JSON);
+		// this.game.load.tilemap('platforme', 'assets/tilemaps/plateforme.json', null, Phaser.Tilemap.TILED_JSON);
 		//Load Tiles
 		this.game.load.image('tiles', 'assets/tiles/tileLevel.png', 16, 16);
 
