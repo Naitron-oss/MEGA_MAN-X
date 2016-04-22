@@ -40,7 +40,7 @@ Megaman.Boss.prototype.create = function(x){
 	console.log("je suis vivant !")
 	//autorise la physique
 	this.enableBody = true;
-	this.reset(750,600-16);
+	this.reset(3504,1248);
 	this.animations.play('move', 10, true);
 	console.dir(this);
 
@@ -55,7 +55,7 @@ Megaman.Boss.prototype.create = function(x){
 	this.bullets.setAll('body.allowGravity', false);
 	this.bullets.setAll('checkWorldBounds', true);
 	this.bullets.setAll('outOfBoundsKill', true);
-	
+
 	this.game.time.events.loop(Phaser.Timer.SECOND*2, this.pattern1, this);
 	//this.pattern1();
 
