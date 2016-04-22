@@ -60,7 +60,7 @@ Megaman.Boss.prototype.create = function(x){
 Megaman.Boss.prototype.shoot = function(x) {
 	this.loadTexture("bossShoot");
 	this.animations.play('move', 10, true);
-	this.game.time.events.loop(Phaser.Timer.SECOND/2, this.createBullet, this);
+	this.game.time.events.loop(Phaser.Timer.SECOND*2, this.createBullet, this);
 
 
 }
