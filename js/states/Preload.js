@@ -2,7 +2,6 @@ Megaman.Preload = function(){}
 
 Megaman.Preload.prototype = {
 	preload: function(){ 
-
 		console.log("Preload preload")
 
 		// on crée un sprite pour la barre de chargement
@@ -30,12 +29,30 @@ Megaman.Preload.prototype = {
 
 		//this.game.load.spritesheet("nom","url_60x80.png", 60, 80, 10);
 		// image (key, url)
+<<<<<<< HEAD
 		//this.game.load.image("nom","url");
 		//this.game.load.image("play","url");
+=======
+		this.game.load.image("nom","url");
+		this.game.load.image("play","url");
+
+		/*DAMIEN CODE*/
+
+		// Load TILEMAP
+		//game.load.tilemap('level3', 'assets/tilemaps/maps/cybernoid.json', null, Phaser.Tilemap.TILED_JSON);
+		this.game.load.tilemap('level1', 'assets/tilemaps/level1.json', null, Phaser.Tilemap.TILED_JSON);
+		//Load Tiles
+		this.game.load.image('tiles', 'assets/tiles/tileLevel.png', 16, 16);
+
+
+		/*DAMIEN CODE END*/
+>>>>>>> dbd19c098612beadfdef0b025c1270e09a5a0c3a
 	},
   	create: function(){
   		console.log("Preload finished")
   		// go to title
 		this.game.state.start("Title");
+
+		
 	}
 }
