@@ -24,7 +24,7 @@ Megaman.Game.prototype = {
 		this.layerWalls = this.mapLevel1.createLayer("walls");
 		this.game.physics.enable(this.layerWalls, Phaser.Physics.ARCADE);
 
-		this.layerWalls.debug = true;
+		// this.layerWalls.debug = true;
 		this.layerWalls.enableBody = true;
 
 		this.layerLadder = this.mapLevel1.createLayer("ladder");
