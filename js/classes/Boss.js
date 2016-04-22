@@ -54,7 +54,7 @@ Megaman.Boss.prototype.create = function(x){
 	this.bullets.setAll('checkWorldBounds', true);
 	this.bullets.setAll('outOfBoundsKill', true);
 
-	this.shoot(2000)
+	this.shoot(2000);
 
 }
 

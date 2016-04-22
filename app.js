@@ -16,6 +16,8 @@
 	game.state.add("Title", Megaman.Title);
 	game.state.add("Game", Megaman.Game);
 	game.state.add("GameOver", Megaman.GameOver);
+	game.state.add("Credit", Megaman.Credit);
+	game.state.add("Controls", Megaman.Controls);
 
 	// lancer l'ecran de lancement du jeu
 	game.state.start("Splash");

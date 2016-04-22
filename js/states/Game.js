@@ -49,8 +49,7 @@ Megaman.Game.prototype = {
 		this.game.player.bullets.setAll('checkWorldBounds', true);
 
 
-		//this.game.player = new Megaman.Player(this.game, "Batman");
-		//this.game,"nom",type,posx,posy
+
 		for (var i = 0; i < 10; i++) {
 			var t = typeArray[Math.floor(Math.random()*typeArray.length)];
 			enemyArray.push(new Megaman.Enemy(this.game, "Mario", t, 10*i, 20*i));
@@ -59,20 +58,16 @@ Megaman.Game.prototype = {
 
 
 		// bouton a retirer juste pour passer a l'ecran suivant
+
 		//var gameOverButton = this.game.add.button(600, 320, "play", this.stopTheGame, this);
 		//gameOverButton.anchor.setTo(0.5,0.5);
 
-
-		this.map = this.game.add.tilemap('plateforme');
-		this.map.addTilesetImage('ground');
-		this.map.setCollisionBetween(1, 1);
+		var gameOverButton = this.game.add.button(160, 120, "play", this.stopTheGame, this);
+		gameOverButton.anchor.setTo(0.5,0.5);
 		
-		this.layer = this.map.createLayer("Calque de Tile 1");
-		this.layer.debug = true;
 
-		this.map.setCollisionBetween(1, 1);
-
-
+		
+		//this.map.setCollisionBetween(1, 1);
 	},
 	stopTheGame : function(){
 		// tue le joueur
