@@ -64,7 +64,6 @@ Megaman.Player.prototype.hit = function (bullet) {
 	if (this.body.health < 0) {
 		this.explode();
 	}
-
 }
 
 Megaman.Player.prototype.explode = function () {
