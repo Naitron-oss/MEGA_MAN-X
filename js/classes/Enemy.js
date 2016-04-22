@@ -31,7 +31,7 @@ Megaman.Enemy = function (game, name, type, x, y) {
 	this.game.physics.enable(this, Phaser.Physics.ARCADE);
 
     this.create(x,y);
-    this.move();
+    //this.move();
 
     return this;
 }

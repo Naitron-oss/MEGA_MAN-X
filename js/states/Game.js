@@ -15,14 +15,13 @@ Megaman.Game.prototype = {
 
 		this.map = this.game.add.tilemap('plateforme');
 		this.map.addTilesetImage('ground');
+		this.map.setCollisionBetween(1, 1);
 		
 		this.layer = this.map.createLayer("Calque de Tile 1");
-		this.layer.position.x = 200;
-		this.layer.position.y = 200;
-		console.log(this.layer);
-		//layer.resizeWorld();
+		this.layer.debug = true;
 
-		//this.game.physics.enable(this.game.enemy, Phaser.Physics.ARCADE);
+		console.log(this.layer);
+
 	},
 	stopTheGame : function(){
 		// tue le joueur
@@ -37,7 +36,7 @@ Megaman.Game.prototype = {
 
 		//mise à jour globale du jeu
 		// [ TODO a changer ]
-		if(this.game.keys.left.isDown) {
+/*		if(this.game.keys.left.isDown) {
 			this.game.player.body.velocity.x = -50;
 		} else if(this.game.keys.right.isDown) {
 			this.game.player.body.velocity.x = 50;
@@ -45,6 +44,17 @@ Megaman.Game.prototype = {
 			this.game.player.body.velocity.y = -50;
 		}else if(this.game.keys.down.isDown) {
 			this.game.player.body.velocity.y = 50;
+		}*/
+
+		this.game.physics.arcade.collide(this.game.enemy, this.layer);
+		if(this.game.keys.left.isDown) {
+			this.game.enemy.body.velocity.x = -50;
+		} else if(this.game.keys.right.isDown) {
+			this.game.enemy.body.velocity.x = 50;
+		} if(this.game.keys.up.isDown) {
+			this.game.enemy.body.velocity.y = -50;
+		}else if(this.game.keys.down.isDown) {
+			this.game.enemy.body.velocity.y = 50;
 		}
 	}
 }
