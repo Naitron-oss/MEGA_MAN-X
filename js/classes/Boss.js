@@ -49,12 +49,22 @@ Megaman.Boss.prototype.create = function(x){
 	this.bullets.createMultiple(75, 'bossBullets');
 	this.bullets.setAll('anchor.x', 0.5);
 	this.bullets.setAll('anchor.y', 0.5);
+	this.bullets.setAll('damage', 25);
 	this.bullets.setAll('body.allowGravity', false);
 	this.bullets.setAll('checkWorldBounds', true);
 	this.bullets.setAll('outOfBoundsKill', true);
 
 	this.shoot(2000)
 
+}
+
+Megaman.Boss.prototype.hit = function (player, bullet) {   
+	console.log("je suis touché ! " + bullet.damage + " dégats");
+	bullet.kill();
+	this.pv -= bullet.damage;
+	if (this.pv <= 0) {
+		this.explode();
+	}
 }
 
 Megaman.Boss.prototype.shoot = function(x) {
