@@ -24,6 +24,8 @@ Megaman.Boss = function (game, name) {
 	_self.game.physics.enable(_self, Phaser.Physics.ARCADE);
 	this.body.collideWorldBounds = true;
 
+	_self.isMoving = false;
+	_self.toRight = false;
     _self.create();
 
     return _self;
@@ -35,12 +37,12 @@ Megaman.Boss.prototype = Object.create(Phaser.Sprite.prototype);
 Megaman.Boss.prototype.constructor = Megaman.Boss;
 
 Megaman.Boss.prototype.create = function(x){
-	console.log("je suis vivant !")
+	//console.log("je suis vivant !")
 	//autorise la physique
 	this.enableBody = true;
 	this.reset(3504,1248);
 	this.animations.play('move', 10, true);
-	console.dir(this);
+	//console.dir(this);
 
 	//ajout groupe de bullet Boss
 	this.bullets = this.game.add.group();
@@ -54,12 +56,13 @@ Megaman.Boss.prototype.create = function(x){
 	this.bullets.setAll('checkWorldBounds', true);
 	this.bullets.setAll('outOfBoundsKill', true);
 
-	this.shoot(2000);
+	this.game.time.events.loop(Phaser.Timer.SECOND*2, this.pattern1, this);
+	//this.pattern1();
 
 }
 
 Megaman.Boss.prototype.hit = function (player, bullet) {   
-	console.log("je suis touché ! " + bullet.body.damage + " dégats");
+	//console.log("je suis touché ! " + bullet.body.damage + " dégats");
 	bullet.kill();
 	this.pv -= bullet.body.damage;
 	if (this.pv <= 0) {
@@ -70,8 +73,8 @@ Megaman.Boss.prototype.hit = function (player, bullet) {
 Megaman.Boss.prototype.shoot = function(x) {
 	this.loadTexture("bossShoot");
 	this.animations.play('move', 10, true);
-	this.game.time.events.loop(Phaser.Timer.SECOND*2, this.createBullet, this);
-
+	//this.game.time.events.loop(Phaser.Timer.SECOND*2, this.createBullet, this);
+	this.createBullet();
 
 }
 
@@ -86,4 +89,42 @@ Megaman.Boss.prototype.createBullet = function(){
 		
 	}
 	
+}
+
+Megaman.Boss.prototype.pattern1 = function(){
+	var _self = this;
+
+	if (!_self.isMoving) {
+		_self.move();
+	}
+	
+
+}
+
+Megaman.Boss.prototype.move = function(){
+	var _self = this;
+	_self.isMoving = true;
+
+	var movement = -50;
+	
+	//console.log(_self.toRight);
+	if (_self.toRight) {
+		movement = -movement;
+		this.scale.x = -1;
+	}
+
+	this.loadTexture("bossRun");
+	this.animations.play('move', 10, true);
+	var mover = this.game.add.tween(this).to( { 
+			x : this.position.x + movement
+		} , 500, Phaser.Easing.Linear.None, true);
+	mover.onComplete.add(function(){
+			_self.loadTexture("boss");
+			_self.animations.play('move');
+			_self.isMoving = false;
+			_self.toRight = !_self.toRight;
+			_self.scale.x = 1;
+			_self.shoot();
+		})	
+
 }
