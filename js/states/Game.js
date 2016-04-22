@@ -19,11 +19,9 @@ Megaman.Game.prototype = {
 		this.game.player.bullets.setAll('outOfBoundsKill', true);
 		this.game.player.bullets.setAll('checkWorldBounds', true);
 
-
 		// bouton a retirer juste pour passer a l'ecran suivant
 		var gameOverButton = this.game.add.button(600, 320, "play", this.stopTheGame, this);
 		gameOverButton.anchor.setTo(0.5,0.5);
-		
 		
 	},
 	stopTheGame : function(){
