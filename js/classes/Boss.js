@@ -55,7 +55,7 @@ Megaman.Boss.prototype.create = function(x){
 	this.bullets.setAll('body.allowGravity', false);
 	this.bullets.setAll('checkWorldBounds', true);
 	this.bullets.setAll('outOfBoundsKill', true);
-
+	
 	this.game.time.events.loop(Phaser.Timer.SECOND*2, this.pattern1, this);
 	//this.pattern1();
 

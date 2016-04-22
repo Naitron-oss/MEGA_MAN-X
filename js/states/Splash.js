@@ -14,7 +14,10 @@ Megaman.Splash.prototype = {
   		// taille du jeu
 		this.scale.scaleMode = Phaser.ScaleManager.SHOW_ALL;
 		this.scale.pageAlignHorizontally = true;
-		//this.game.scale.pageAlignVertically = true;
+		this.game.scale.pageAlignVertically = true;
+		console.log(this.game.scale)
+
+
 		// le splash screen a été créé on peu lancer le preload
 		this.game.state.start("Preload");
 	}
