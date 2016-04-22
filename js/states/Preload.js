@@ -25,9 +25,9 @@ Megaman.Preload.prototype = {
 
 		this.game.load.image('ground', 'assets/map_80x80.png');
 
-		this.game.load.image("enemy1","ball.png");
-		this.game.load.image("enemy2","ball.png");
-		this.game.load.image("enemy3","ball.png");
+		this.game.load.image("ennemi1","ball.png");
+		this.game.load.image("ennemi2","ball_blue.png");
+		this.game.load.image("ennemi3","ball_red.png");
 
 
 

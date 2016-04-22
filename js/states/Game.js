@@ -1,14 +1,22 @@
 Megaman.Game = function(){}
 
+
+var enemyArray = [];
+var typeArray = [1,2,3];
+
 Megaman.Game.prototype = {
 	create: function(){ 
 		console.log("Game Screen")
 
 		this.game.physics.startSystem(Phaser.Physics.ARCADE);
 		//crée un joueur
-		this.game.player = new Megaman.Player(this.game, "Batman");
+		//this.game.player = new Megaman.Player(this.game, "Batman");
 		//this.game,"nom",type,posx,posy
-		this.game.enemy = new Megaman.Enemy(this.game, "Mario", 1, 50, 200);
+		for (var i = 0; i < 10; i++) {
+			var t = typeArray[Math.floor(Math.random()*typeArray.length)];
+			enemyArray.push(new Megaman.Enemy(this.game, "Mario", t, 10*i, 20*i));
+		}
+		
 		// bouton a retirer juste pour passer a l'ecran suivant
 		//var gameOverButton = this.game.add.button(600, 320, "play", this.stopTheGame, this);
 		//gameOverButton.anchor.setTo(0.5,0.5);
@@ -19,8 +27,6 @@ Megaman.Game.prototype = {
 		
 		this.layer = this.map.createLayer("Calque de Tile 1");
 		this.layer.debug = true;
-
-		console.log(this.layer);
 
 	},
 	stopTheGame : function(){
@@ -36,7 +42,7 @@ Megaman.Game.prototype = {
 
 		//mise à jour globale du jeu
 		// [ TODO a changer ]
-/*		if(this.game.keys.left.isDown) {
+		if(this.game.keys.left.isDown) {
 			this.game.player.body.velocity.x = -50;
 		} else if(this.game.keys.right.isDown) {
 			this.game.player.body.velocity.x = 50;
@@ -44,17 +50,21 @@ Megaman.Game.prototype = {
 			this.game.player.body.velocity.y = -50;
 		}else if(this.game.keys.down.isDown) {
 			this.game.player.body.velocity.y = 50;
-		}*/
+		}
 
-		this.game.physics.arcade.collide(this.game.enemy, this.layer);
-		if(this.game.keys.left.isDown) {
-			this.game.enemy.body.velocity.x = -50;
-		} else if(this.game.keys.right.isDown) {
-			this.game.enemy.body.velocity.x = 50;
-		} if(this.game.keys.up.isDown) {
-			this.game.enemy.body.velocity.y = -50;
-		}else if(this.game.keys.down.isDown) {
-			this.game.enemy.body.velocity.y = 50;
+		for (var i = 0; i < enemyArray.length; i++) {
+			this.game.physics.arcade.collide(enemyArray[i], this.layer);
+			switch(enemyArray[i].type){
+		    	case 1:
+		    		enemyArray[i].move();
+		    	break;
+		    	case 2:
+		    		enemyArray[i].shoot();
+		    	break;
+		    	case 3:
+		    		enemyArray[i].fly();
+		    	break;
+		    }
 		}
 	}
 }
