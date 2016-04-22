@@ -7,10 +7,9 @@ Megaman.Player = function (game, name) {
 
     //animations
    	this.animationRun = this.animations.add('run', [0,1,2,3], 5, true);
-   	this.animationJump = this.animations.add('jump', [8,4], 5, true);
+   	this.animationJump = this.animations.add('jump', [4], 5, true);
    	this.animationLadder = this.animations.add('ladder',[5,6],5,true);
-   	this.animationShoot = this.animations.add('shoot',[8,9],5,true);
-   	this.play('jump');
+   	this.animationShoot = this.animations.add('shoot',[8,9],24,true);
     //this est notre sprite phaser maintenant
     this.anchor.setTo(0.5, 0.5);
 
@@ -57,13 +56,13 @@ Megaman.Player.prototype.create = function (x) {
 Megaman.Player.prototype.jump = function(argument){
 	if (this.body.onFloor() && this.game.time.now > this.jumpTimer)
     {
-        this.body.velocity.y = -250;
+        this.body.velocity.y = -128;
         this.jumpTimer = this.game.time.now + 750;
     }
 };
 
 Megaman.Player.prototype.hit = function (player, bullet) {  
-	console.log("je suis touché ! " + bullet.damage + " dégats");
+	//console.log("je suis touché ! " + bullet.damage + " dégats");
 	bullet.kill();
 	this.body.health -= bullet.damage;
 	if (this.body.health < 0) {
