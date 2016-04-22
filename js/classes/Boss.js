@@ -59,9 +59,9 @@ Megaman.Boss.prototype.create = function(x){
 }
 
 Megaman.Boss.prototype.hit = function (player, bullet) {   
-	console.log("je suis touché ! " + bullet.damage + " dégats");
+	console.log("je suis touché ! " + bullet.body.damage + " dégats");
 	bullet.kill();
-	this.pv -= bullet.damage;
+	this.pv -= bullet.body.damage;
 	if (this.pv <= 0) {
 		this.explode();
 	}
