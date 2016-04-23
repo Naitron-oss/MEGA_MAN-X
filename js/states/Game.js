@@ -39,11 +39,11 @@ Megaman.Game.prototype = {
 
 		this.game.player = new Megaman.Player(this.game, "Batman");
 
-		this.game.camera.follow(this.game.player);
+		//this.game.camera.follow(this.game.player);
 
 
 		this.game.boss = new Megaman.Boss(this.game, "Boss");
-		//this.game.camera.follow(this.game.boss);
+		this.game.camera.follow(this.game.boss);
 		
 		//ajout d'un groupe de bullets pour MEGAMAN
 		this.game.player.bullets = this.game.add.group();
@@ -134,6 +134,7 @@ Megaman.Game.prototype = {
 		}
 
 		this.game.physics.arcade.collide(this.game.boss.bullets, this.layerWalls, killBossBullet, null, this.game);
+		this.game.physics.arcade.collide(this.game.boss, this.layerWalls);
 
 		/* Gestion des ennemies */
 		for (var i = 0; i < enemyArray.length; i++) {

@@ -18,14 +18,13 @@ Megaman.Boss = function (game, name) {
     _self.animations.add('move');
     
 
-	// ajout du clavier
-	_self.game.keys = _self.game.input.keyboard.createCursorKeys();
-
 	_self.game.physics.enable(_self, Phaser.Physics.ARCADE);
-	this.body.collideWorldBounds = true;
+	_self.body.collideWorldBounds = true;
+	_self.body.gravity.y = 250;
 
 	_self.isMoving = false;
 	_self.toRight = false;
+	_self.movementCounter = 0;
     _self.create();
 
     return _self;
@@ -55,8 +54,9 @@ Megaman.Boss.prototype.create = function(x){
 	this.bullets.setAll('body.allowGravity', false);
 	this.bullets.setAll('checkWorldBounds', true);
 	this.bullets.setAll('outOfBoundsKill', true);
+	this.bullets.setAll('body.mass', 5);
 
-	this.game.time.events.loop(Phaser.Timer.SECOND*2, this.pattern1, this);
+	this.game.time.events.loop(Phaser.Timer.SECOND*2, this.switchPattern, this);
 	//this.pattern1();
 
 }
@@ -69,14 +69,37 @@ Megaman.Boss.prototype.hit = function (player, bullet) {
 		this.explode();
 	}
 }
-
-Megaman.Boss.prototype.shoot = function(x) {
-	this.loadTexture("bossShoot");
-	this.animations.play('move', 10, true);
-	//this.game.time.events.loop(Phaser.Timer.SECOND*2, this.createBullet, this);
-	this.createBullet();
-
+Megaman.Player.prototype.explode = function () {
+	console.log("FireMan : je suis mort !");
+	this.kill();
 }
+Megaman.Boss.prototype.shoot = function(x) {
+	var _self = this;
+	_self.loadTexture("bossShoot");
+	_self.animations.play('move', 10, true);
+	//this.game.time.events.loop(Phaser.Timer.SECOND*2, this.createBullet, this);
+	_self.createBullet();
+	// repasse en position normale apres 0.3 sec
+	setTimeout(function () {
+		_self.loadTexture("boss");
+		_self.animations.play('move', 10, true);
+	}, 300)
+}
+Megaman.Boss.prototype.megaShoot = function(x) {
+	var _self = this;
+	_self.isMoving = true;
+	_self.loadTexture("bossShoot");
+	_self.animations.play('move', 10, true);
+	var myLoop = this.game.time.events.loop(Phaser.Timer.SECOND/10, this.createBullet, this);
+	// repasse en position normale apres 2 sec
+	setTimeout(function () {
+		_self.game.time.events.remove(myLoop);
+		_self.loadTexture("boss");
+		_self.animations.play('move', 10, true);
+		_self.isMoving = false;
+	}, 2000)
+}
+
 
 Megaman.Boss.prototype.createBullet = function(){
 	
@@ -90,18 +113,28 @@ Megaman.Boss.prototype.createBullet = function(){
 	}
 	
 }
-
-Megaman.Boss.prototype.pattern1 = function(){
+Megaman.Boss.prototype.switchPattern = function(){
 	var _self = this;
 
 	if (!_self.isMoving) {
-		_self.move();
+		switch (_self.movementCounter) {
+			case 0 :
+			case 1 :
+			case 2 :
+			case 3 :
+				_self.moveAndShoot();
+				_self.movementCounter++;
+				break;
+			default:
+				_self.megaShoot();
+				console.log('restart Boss Pattern');
+				_self.movementCounter = 0;
+				break;
+		}
 	}
-	
-
 }
 
-Megaman.Boss.prototype.move = function(){
+Megaman.Boss.prototype.moveAndShoot = function(){
 	var _self = this;
 	_self.isMoving = true;
 
